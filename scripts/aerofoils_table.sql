@@ -1,25 +1,24 @@
-CREATE table "AEROFOILS" (
-    "ID"            NUMBER NOT NULL,
-    "AEROFOIL_NAME" VARCHAR2(256) NOT NULL,
-    constraint  "AEROFOILS_PK" primary key ("ID")
-)
-/
+CREATE TABLE "AEROFOILS"
+(
+  "ID"                   NUMBER        NOT NULL ENABLE,
+  "AEROFOIL_NAME"        VARCHAR2(256) NOT NULL ENABLE,
+  "AEROFOIL_DESCRIPTION" VARCHAR2(256),
+  CONSTRAINT "AEROFOILS_PK" PRIMARY KEY ("ID") ENABLE,
+  CONSTRAINT "AEROFOILS_UK1" UNIQUE ("AEROFOIL_NAME") ENABLE
+);
 
-CREATE sequence "AEROFOILS_SEQ"
-/
+CREATE OR REPLACE TRIGGER "BI_AEROFOILS"
+BEFORE INSERT ON "AEROFOILS"
+FOR EACH ROW
+  BEGIN
+    IF :NEW."ID" IS NULL
+    THEN
+      SELECT "AEROFOILS_SEQ".nextval
+      INTO :NEW."ID"
+      FROM dual;
+    END IF;
+  END;
 
-CREATE trigger "BI_AEROFOILS"
-  before insert on "AEROFOILS"
-  for each row
-begin
-  if :NEW."ID" is null then
-    select "AEROFOILS_SEQ".nextval into :NEW."ID" from dual;
-  end if;
-end;
 /
-
-alter table "AEROFOILS" add
-constraint "AEROFOILS_UK1"
-unique ("AEROFOIL_NAME")
-/
+ALTER TRIGGER "BI_AEROFOILS" ENABLE;
 
