@@ -1,5 +1,6 @@
 package com.infy.bokbe6.swing;
 
+import com.infy.bokbe6.service.LoginService;
 import com.infy.bokbe6.utils.SwingUtil;
 
 import javax.swing.*;
@@ -63,11 +64,19 @@ public class LoginScreen {
             public void actionPerformed(ActionEvent e) {
                 //perform login operation
 
-                //decide whether to move to next screen of remain in the same one
-               loginScreen.dispose();
-                loginScreen.setVisible(false);
-                SelectionScreen selectionScreen = new SelectionScreen();
-                selectionScreen.showAerofoilSelection();
+                LoginService loginService = new LoginService();
+                if (loginService.login(usernameText.getText(), passwordText.getText())) {
+                    //decide whether to move to next screen of remain in the same one
+                    loginScreen.dispose();
+                    loginScreen.setVisible(false);
+                    SelectionScreen selectionScreen = new SelectionScreen();
+                    selectionScreen.showAerofoilSelection();
+                } else {
+                    JOptionPane optionPane = new JOptionPane("Incorrect credentials. Please try again!");
+                    optionPane.setVisible(true);
+                }
+
+
 
             }
         });
