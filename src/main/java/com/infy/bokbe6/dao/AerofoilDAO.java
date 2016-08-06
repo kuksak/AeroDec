@@ -48,4 +48,15 @@ public class AerofoilDAO {
 
     }
 
+    public List<AerofoilsEntity> findAll() {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        transaction.begin();
+
+        Criteria criteria = session.createCriteria(AerofoilsEntity.class);
+        List<AerofoilsEntity> aerofoilsEntities = criteria.list();
+        transaction.commit();
+
+        return aerofoilsEntities;
+    }
 }

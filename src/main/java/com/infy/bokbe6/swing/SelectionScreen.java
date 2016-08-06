@@ -1,12 +1,15 @@
 package com.infy.bokbe6.swing;
 
 
+import com.infy.bokbe6.beans.AerofoilsEntity;
+import com.infy.bokbe6.service.SelectionService;
 import com.infy.bokbe6.utils.SwingUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
@@ -39,12 +42,15 @@ public class SelectionScreen {
         JPanel labels = new JPanel(new GridLayout(0, 1));
         JPanel fields = new JPanel(new GridLayout(0, 1));
 
-        final String[] aerofoilNames = {"NACA116", "NACA670020", "NACA670110"};
+        //fetch airfoil details from database
+        SelectionService selectionService = new SelectionService();
+        List<AerofoilsEntity> aerofoilsEntityList = selectionService.getAerofoilsEntityList();
+
         JLabel selectAerofoil = new JLabel("Select aerofoil");
         final JComboBox selectionBox = new JComboBox();
 
-        for (int i = 0; i < aerofoilNames.length; i++) {
-            selectionBox.addItem(aerofoilNames[i]);
+        for (AerofoilsEntity aerofoilsEntity : aerofoilsEntityList) {
+            selectionBox.addItem("NACA " + aerofoilsEntity.getAerofoilName());
         }
 
         labels.add(selectAerofoil);
