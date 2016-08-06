@@ -21,6 +21,8 @@ public class AerofoilDetails {
 
     public void createDetailDisplayScreen(){
 
+        //this is another demo
+
         JFrame detailFrame = new JFrame();
 
         detailFrame.setContentPane(getInfoFrame());
