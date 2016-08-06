@@ -4,13 +4,14 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
  <session-factory>
-  <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-  <property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:MKYONG</property>
-  <property name="hibernate.connection.username">mkyong</property>
-  <property name="hibernate.connection.password">password</property>
+     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+     <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/XE</property>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-  <property name="hibernate.default_schema">MKYONG</property>
+     <property name="hibernate.default_schema">SAKSH</property>
   <property name="show_sql">true</property>
-  <mapping resource="com/mkyong/user/DBUser.hbm.xml"></mapping>
-</session-factory>
+     <mapping resource="com/infy/bokbe6/beans/AerofoilsEntity.hbm.xml"/>
+     <mapping class="com.infy.bokbe6.beans.AerofoilsEntity"/>
+     <mapping class="com.infy.bokbe6.beans.CoordinatesEntity"/>
+     <mapping resource="com/infy/bokbe6/beans/CoordinatesEntity.hbm.xml"/>
+ </session-factory>
 </hibernate-configuration>
