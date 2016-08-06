@@ -72,8 +72,7 @@ public class LoginScreen {
                     SelectionScreen selectionScreen = new SelectionScreen();
                     selectionScreen.showAerofoilSelection();
                 } else {
-                    JOptionPane optionPane = new JOptionPane("Incorrect credentials. Please try again!");
-                    optionPane.setVisible(true);
+                    JOptionPane.showMessageDialog(loginScreen, "invalid Credentials. Please try again!", "login Failed", JOptionPane.ERROR_MESSAGE);
                 }
 
 
