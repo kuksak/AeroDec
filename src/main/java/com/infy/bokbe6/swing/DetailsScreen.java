@@ -4,6 +4,13 @@ import com.infy.bokbe6.beans.AerofoilsEntity;
 import com.infy.bokbe6.beans.CoordinatesEntity;
 import com.infy.bokbe6.service.DetailService;
 import com.infy.bokbe6.utils.SwingUtil;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +22,8 @@ import java.util.List;
 public class DetailsScreen {
 
     private List<AerofoilsEntity> aerofoilsEntityList;
+    private List<CoordinatesEntity> coordinatesEntityList;
+    private JFrame detailFrame;
 
     DetailsScreen(List<AerofoilsEntity> aerofoilsEntityList) {
 
@@ -24,10 +33,10 @@ public class DetailsScreen {
     void createDetailDisplayScreen() {
 
         //setup parent frame
-        JFrame detailFrame = new JFrame();
+        detailFrame = new JFrame();
         //set the content pane into the frame
         detailFrame.setContentPane(setupDetailsPanel());
-        detailFrame.setSize(620, 480);
+        detailFrame.setSize(640, 480);
         //setup dimensions to align the window to center of screen
         SwingUtil.setDimensions(detailFrame);
         detailFrame.setVisible(true);
@@ -47,13 +56,38 @@ public class DetailsScreen {
         AerofoilsEntity aerofoilsEntity = aerofoilsEntityList.get(0);
         DetailService detailService = new DetailService();
 
-        List<CoordinatesEntity> coordinatesEntityList = detailService.getCoordinates(aerofoilsEntity.getId());
-        System.out.println(coordinatesEntityList.size());
-        JLabel nameOfAerofoil = new JLabel("NACA " + aerofoilsEntity.getAerofoilName());
+        coordinatesEntityList = detailService.getCoordinates(aerofoilsEntity.getId());
+        createGraph(detailsPanel);
 
-        detailsPanel.add(nameOfAerofoil);
         mainDetailPanel.add(detailsPanel, BorderLayout.CENTER);
 
         return mainDetailPanel;
+    }
+
+
+    private void createGraph(JPanel detailsPanel) {
+        JPanel chartPanel = createChartPanel();
+        detailsPanel.add(chartPanel);
+
+    }
+
+    private JPanel createChartPanel() {
+        String chartTitle = "NACA Aerofoil Chart";
+        String xAxisLabel = "X";
+        String yAxisLabel = "Y";
+
+        XYDataset xyDataset = createDataSet();
+        JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, xyDataset, PlotOrientation.HORIZONTAL, true, false, false);
+        return new ChartPanel(chart);
+    }
+
+    XYDataset createDataSet() {
+        XYSeriesCollection xySeriesCollection = new XYSeriesCollection();
+        XYSeries xySeries = new XYSeries("FIRST SERIES", false, true);
+        for (CoordinatesEntity coordinatesEntity : coordinatesEntityList) {
+            xySeries.add(coordinatesEntity.getyCoordinate(), coordinatesEntity.getxCoordinate());
+        }
+        xySeriesCollection.addSeries(xySeries);
+        return xySeriesCollection;
     }
 }

@@ -1,12 +1,23 @@
 package com.infy.bokbe6.beans;
 
+import java.math.BigDecimal;
+
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */
 public class CoordinatesEntity {
     private long id;
-    private double xCoordinate;
-    private double yCoordinate;
+    private long nacaId;
+    private BigDecimal xCoordinate;
+    private BigDecimal yCoordinate;
+
+    public long getNacaId() {
+        return nacaId;
+    }
+
+    public void setNacaId(long nacaId) {
+        this.nacaId = nacaId;
+    }
 
     public long getId() {
         return id;
@@ -16,19 +27,19 @@ public class CoordinatesEntity {
         this.id = id;
     }
 
-    public double getxCoordinate() {
+    public BigDecimal getxCoordinate() {
         return xCoordinate;
     }
 
-    public void setxCoordinate(double xCoordinate) {
+    public void setxCoordinate(BigDecimal xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
 
-    public double getyCoordinate() {
+    public BigDecimal getyCoordinate() {
         return yCoordinate;
     }
 
-    public void setyCoordinate(double yCoordinate) {
+    public void setyCoordinate(BigDecimal yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
 
@@ -40,8 +51,6 @@ public class CoordinatesEntity {
         CoordinatesEntity that = (CoordinatesEntity) o;
 
         if (id != that.id) return false;
-        if (Double.compare(that.xCoordinate, xCoordinate) != 0) return false;
-        if (Double.compare(that.yCoordinate, yCoordinate) != 0) return false;
 
         return true;
     }
@@ -51,10 +60,6 @@ public class CoordinatesEntity {
         int result;
         long temp;
         result = (int) (id ^ (id >>> 32));
-        temp = Double.doubleToLongBits(xCoordinate);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(yCoordinate);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 }

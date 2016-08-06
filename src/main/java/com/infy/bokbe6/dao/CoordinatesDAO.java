@@ -37,7 +37,7 @@ public class CoordinatesDAO {
         Transaction transaction = session.beginTransaction();
         transaction.begin();
         Criteria criteria = session.createCriteria(CoordinatesEntity.class);
-        criteria.add(Restrictions.eq("id", id));
+        criteria.add(Restrictions.eq("nacaId", id));
         List<CoordinatesEntity> coordinatesEntities = criteria.list();
         transaction.commit();
         return coordinatesEntities;

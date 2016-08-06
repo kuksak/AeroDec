@@ -8,7 +8,10 @@
         <id name="id" type="java.lang.Long" column="ID">
             <generator class="sequence-identity"></generator>
         </id>
-        <property name="xCoordinate" column="X_COORDINATE"/>
-        <property name="yCoordinate" column="Y_COORDINATE"/>
+        <property name="nacaId" column="NACA_ID"></property>
+        <property name="xCoordinate" column="XCOORDINATE" type="java.math.BigDecimal" precision="8" length="10"
+                  scale="3"/>
+        <property name="yCoordinate" column="YCOORDINATE" type="java.math.BigDecimal" precision="8" length="10"
+                  scale="3"/>
     </class>
 </hibernate-mapping>
