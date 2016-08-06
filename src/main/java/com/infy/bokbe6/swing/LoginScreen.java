@@ -61,6 +61,9 @@ public class LoginScreen {
         loginButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
+                //perform login operation
+
+                //decide whether to move to next screen of remain in the same one
                loginScreen.dispose();
                 loginScreen.setVisible(false);
                 SelectionScreen selectionScreen = new SelectionScreen();

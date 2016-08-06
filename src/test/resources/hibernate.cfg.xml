@@ -13,5 +13,6 @@
         <property name="show_sql">true</property>
         <mapping resource="AerofoilsEntity.hbm.xml"/>
         <mapping resource="CoordinatesEntity.hbm.xml"/>
+        <mapping resource="UsersEntity.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
