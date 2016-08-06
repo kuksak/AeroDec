@@ -11,44 +11,39 @@ import java.awt.event.ActionListener;
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */
-public class Login  {
+public class LoginScreen {
     private JFrame loginScreen;
 
-    public Login(){
-
-    }
 
     /**
-     * creates login screen
+     * sets up screen for login details and starts it
      */
-    public void createLoginScreen(){
+    public void startLoginScreen() {
 
         loginScreen = new JFrame();
-        JPanel loginPanel = getLoginPanel();
-
+        //setup login panel and add to the parent fram
+        JPanel loginPanel = setupLoginPanel();
+        //set this login panel to the login screen
         loginScreen.setContentPane(loginPanel);
-        /**
-         *calling the method setLoginPanel which is returning a JPanel
-         */
         loginScreen.pack();
 
-
-        /**
-         * calling the method setLocationDimension which is setting the loginScreen at the center
-         */
+        //setup dimensions to the parent frame so that it aligns to the center of screen
         SwingUtil.setDimensions(loginScreen);
         loginScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
+        //mark screen as visible
         loginScreen.setVisible(true);
-
     }
 
-
-    JPanel getLoginPanel() {
+    /**
+     * setup login panel with all the labels and fields
+     *
+     * @return JPanel
+     */
+    JPanel setupLoginPanel() {
+        //set a bordered layout for the root panel
         JPanel loginPanel = new JPanel(new BorderLayout(3,3));
         loginPanel.setBorder(new EmptyBorder(5,5,5,5));
-
 
         JPanel labelPanel= new JPanel(new GridLayout(0,1));
         JLabel password = new JLabel("Password");
@@ -62,16 +57,14 @@ public class Login  {
         textFieldPanel.add(passwordText);
 
 
-        final JButton loginButton = new JButton("Login");
+        final JButton loginButton = new JButton("LoginScreen");
         loginButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
                loginScreen.dispose();
                 loginScreen.setVisible(false);
-                AerofoilSelection aerofoilSelection=new AerofoilSelection();
-                aerofoilSelection.showAerofoilSelection();
-
-
+                SelectionScreen selectionScreen = new SelectionScreen();
+                selectionScreen.showAerofoilSelection();
 
             }
         });

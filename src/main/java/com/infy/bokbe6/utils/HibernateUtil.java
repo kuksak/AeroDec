@@ -1,5 +1,8 @@
 package com.infy.bokbe6.utils;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */

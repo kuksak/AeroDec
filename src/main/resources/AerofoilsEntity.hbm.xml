@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.infy.bokbe6.beans.AerofoilsEntity" table="AEROFOILS" schema="SAKSH">
-        <id name="id" column="ID"/>
+        <id name="id" type="java.lang.Long" column="ID">
+            <generator class="sequence-identity"></generator>
+        </id>
         <property name="aerofoilName" column="AEROFOIL_NAME"/>
         <property name="aerofoilDescription" column="AEROFOIL_DESCRIPTION"/>
     </class>

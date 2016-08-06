@@ -1,19 +1,13 @@
 package com.infy.bokbe6.beans;
 
-import javax.persistence.*;
-
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */
-@Entity
-@Table(name = "AEROFOILS", schema = "SAKSH", catalog = "")
 public class AerofoilsEntity {
     private long id;
     private String aerofoilName;
     private String aerofoilDescription;
 
-    @Id
-    @Column(name = "ID")
     public long getId() {
         return id;
     }
@@ -22,8 +16,6 @@ public class AerofoilsEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "AEROFOIL_NAME")
     public String getAerofoilName() {
         return aerofoilName;
     }
@@ -32,8 +24,6 @@ public class AerofoilsEntity {
         this.aerofoilName = aerofoilName;
     }
 
-    @Basic
-    @Column(name = "AEROFOIL_DESCRIPTION")
     public String getAerofoilDescription() {
         return aerofoilDescription;
     }

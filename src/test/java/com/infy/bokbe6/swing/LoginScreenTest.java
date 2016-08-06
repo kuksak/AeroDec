@@ -8,13 +8,13 @@ import javax.swing.*;
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */
-public class LoginTest {
+public class LoginScreenTest {
 
 
     @Test
     public void testGetLoginPanel(){
-        Login login = new Login();
-        JPanel jpanel = login.getLoginPanel();
+        LoginScreen loginScreen = new LoginScreen();
+        JPanel jpanel = loginScreen.setupLoginPanel();
         Assert.assertNotNull(jpanel);
     }
 

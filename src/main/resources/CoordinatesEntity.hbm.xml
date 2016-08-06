@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.infy.bokbe6.beans.CoordinatesEntity" table="COORDINATES" schema="SAKSH">
-        <property name="id" column="ID"/>
+        <id name="id" type="java.lang.Long" column="ID">
+            <generator class="sequence-identity"></generator>
+        </id>
         <property name="xCoordinate" column="X_COORDINATE"/>
         <property name="yCoordinate" column="Y_COORDINATE"/>
     </class>
