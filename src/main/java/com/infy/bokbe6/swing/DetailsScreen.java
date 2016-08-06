@@ -1,19 +1,24 @@
 package com.infy.bokbe6.swing;
 
+import com.infy.bokbe6.beans.AerofoilsEntity;
+import com.infy.bokbe6.beans.CoordinatesEntity;
+import com.infy.bokbe6.service.DetailService;
 import com.infy.bokbe6.utils.SwingUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * Created by Sakshi Kukreti on 06-08-2016.
  */
 public class DetailsScreen {
 
-    private String item;
+    private List<AerofoilsEntity> aerofoilsEntityList;
 
-    DetailsScreen(String item) {
-        this.item = item;
+    DetailsScreen(List<AerofoilsEntity> aerofoilsEntityList) {
+
+        this.aerofoilsEntityList = aerofoilsEntityList;
     }
 
     void createDetailDisplayScreen() {
@@ -39,7 +44,13 @@ public class DetailsScreen {
 
         JPanel mainDetailPanel = new JPanel(new BorderLayout(5, 5));
         JPanel detailsPanel = new JPanel(new GridLayout(0, 1));
-        JLabel nameOfAerofoil = new JLabel(item);
+        AerofoilsEntity aerofoilsEntity = aerofoilsEntityList.get(0);
+        DetailService detailService = new DetailService();
+
+        List<CoordinatesEntity> coordinatesEntityList = detailService.getCoordinates(aerofoilsEntity.getId());
+        System.out.println(coordinatesEntityList.size());
+        JLabel nameOfAerofoil = new JLabel("NACA " + aerofoilsEntity.getAerofoilName());
+
         detailsPanel.add(nameOfAerofoil);
         mainDetailPanel.add(detailsPanel, BorderLayout.CENTER);
 
