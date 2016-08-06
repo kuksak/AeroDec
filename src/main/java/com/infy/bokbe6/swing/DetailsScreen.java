@@ -77,7 +77,7 @@ public class DetailsScreen {
         String yAxisLabel = "Y";
 
         XYDataset xyDataset = createDataSet();
-        JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, xyDataset, PlotOrientation.HORIZONTAL, true, false, false);
+        JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, yAxisLabel, xAxisLabel, xyDataset, PlotOrientation.HORIZONTAL, true, false, false);
         return new ChartPanel(chart);
     }
 
