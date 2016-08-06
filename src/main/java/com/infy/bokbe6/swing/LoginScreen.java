@@ -58,7 +58,7 @@ public class LoginScreen {
         textFieldPanel.add(passwordText);
 
 
-        final JButton loginButton = new JButton("LoginScreen");
+        final JButton loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e) {
