@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.infy.bokbe6.beans.CoordinatesEntity" table="COORDINATES" schema="SAKSH">
+        <id name="id" type="java.lang.Long" column="ID">
+            <generator class="sequence-identity"></generator>
+        </id>
+        <property name="nacaId" column="NACA_ID"></property>
+        <property name="xCoordinate" column="XCOORDINATE" type="java.math.BigDecimal" precision="8" length="10"
+                  scale="3"/>
+        <property name="yCoordinate" column="YCOORDINATE" type="java.math.BigDecimal" precision="8" length="10"
+                  scale="3"/>
+    </class>
+</hibernate-mapping>
