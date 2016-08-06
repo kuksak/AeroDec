@@ -64,7 +64,8 @@ public class SelectionScreen {
                 selectionFrame.dispose();
                 selectionFrame.setVisible(false);
                 String item = (String) selectionBox.getSelectedItem();
-                DetailsScreen detailsScreen = new DetailsScreen(item);
+                List<AerofoilsEntity> aerofoilsEntityList1 = selectionService.getAerofoilEntity(item);
+                DetailsScreen detailsScreen = new DetailsScreen(aerofoilsEntityList1);
                 detailsScreen.createDetailDisplayScreen();
             }
         });
